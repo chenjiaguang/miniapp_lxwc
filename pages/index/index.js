@@ -43,17 +43,33 @@ Page({
     indexMerchantsLoaded: false
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     qqmapsdk = new QQMapWX({
       key: 'RCRBZ-JYTKW-WJCR2-OUUHF-RSZ5V-RKF76', // 必填
       // sig: 'YdSj1eVkpOsyHuQbB9YkPLUgw8kzK7Dh'
     }); 
+    if (options.scene) { // 扫码进入，检查推广信息
+      const sceneParams = util.getParams(decodeURIComponent(options.scene))
+      if (sceneParams.promoteid) {
+        this.checkPromote(sceneParams.promoteid)
+      }
+    }
     console.log('index---------------')
     this.getLngLat()
     if (wx.getStorageSync('token')) { // 存在token才弹出获取位置弹窗
       this.getUserLocation()
     }
     this.setSearchBoxFixed()
+  },
+
+  checkPromote: function (promoteid) {
+    if (promoteid) {
+      util.request('/check/promote', { promoteid }).then(res => {
+        // 成功不做任何提示
+      }).catch(err => {
+        // 失败也不做任何提示
+      })
+    }
   },
 
   onShow: function () {
