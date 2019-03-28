@@ -198,6 +198,7 @@ Page({
             wx.showModal({
                     title: '',
                     content: err.msg,
+                    showCancel: !(err.error && err.error == 3),
                     confirmText: '确定',
                     confirmColor: '#108EE9',
                     success: res => {
