@@ -201,11 +201,17 @@ Page({
                     confirmText: '确定',
                     confirmColor: '#108EE9',
                     success: res => {
+                      if (err.error && err.error == 3) { // 店家下线则直接返回首页
+                        wx.switchTab({
+                          url: '/pages/index/index'
+                        })
+                      } else {
                         if (res.confirm) {
-                            this.goMerchant()
+                          this.goMerchant()
                         } else if (res.cancel) {
-                            this.goMerchant()
+                          this.goMerchant()
                         }
+                      }
                     }
                 })
                 // this.goMerchant()
