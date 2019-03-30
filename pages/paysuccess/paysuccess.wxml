@@ -21,7 +21,7 @@
             <text style="color:#FF0000">{{order.total}}</text>
           </text>
         </view>
-        <!-- <view wx:if="{{order.discount && order.discount !== '0' || true}}" class='discount-item'>
+        <!-- <view wx:if="{{order.discount && order.discount !== '0'}}" class='discount-item'>
           <text style="color:#CC3300">优惠金额</text>
           <text>
             <text style="color:#CC3300">-</text>

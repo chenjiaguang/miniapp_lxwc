@@ -97,7 +97,7 @@ Page({
 
     },
 
-    goMerchant: function() { // 跳转商家 传入点击弹窗取消按钮时是否返回首页
+    goMerchant: function() { // 跳转商家
         let currentPages = getCurrentPages()
         let prePage = (currentPages && currentPages[currentPages.length - 2]) ? currentPages[currentPages.length - 2] : null
         if (prePage && ((prePage.route && prePage.route.indexOf('/merchantdetail/merchantdetail') !== -1) || (prePage.__route__ && prePage.__route__.indexOf('/merchantdetail/merchantdetail') !== -1))) { // 上一页是商家详情页,直接返回上一页
