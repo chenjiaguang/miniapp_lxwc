@@ -175,7 +175,7 @@ Page({
     },
 
     showRechargeBox: function() {
-        util.showRechargeModal(this.fetchUserInfo)
+        util.showRechargeModal({successCallback: this.fetchUserInfo})
     },
 
     // 获取手机号
