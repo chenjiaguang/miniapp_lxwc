@@ -1,6 +1,7 @@
 <!--pages/paysuccess/paysuccess.wxml-->
 <view class='page-paysuccess'>
   <view class='info-box'>
+    <view style="height:70rpx;"></view>
     <!-- <image class='success-icon' src="/assets/images/success_icon.png" mode="aspectFit"></image> -->
     <view class='user-avatar'>
         <user-avatar avatar="{{avatar}}" />
@@ -13,11 +14,27 @@
     <view class='dicount-box-wrapper'>
       <!-- <view class='line-separator-h' style="width:{{622}}rpx;margin-left:32rpx"></view> -->
       <view class='discount-box'>
-        <view wx:if="{{order.discount && order.discount !== '0'}}" class='discount-item'>
-          <text style="color:#CC3300">优惠</text>
+        <view class='discount-item' style="font-size: 34rpx">
+          <text style="color:#FF0000">实际消费</text>
           <text>
+            <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#FF0000"></text>
+            <text style="color:#FF0000">{{order.total}}</text>
+          </text>
+        </view>
+        <!-- <view wx:if="{{order.discount && order.discount !== '0'}}" class='discount-item'>
+          <text style="color:#CC3300">优惠金额</text>
+          <text>
+            <text style="color:#CC3300">-</text>
             <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#CC3300"></text>
             <text style="color:#CC3300">{{order.discount}}</text>
+          </text>
+        </view> -->
+        <view wx:if="{{order.discount && order.discount !== '0'}}" class='discount-item'>
+          <text>优惠金额</text>
+          <text>
+            <text>-</text>
+            <text class='iconfont icon-renminbi' style="font-size:24rpx"></text>
+            <text>{{order.discount}}</text>
           </text>
         </view>
         <view class='discount-item'>

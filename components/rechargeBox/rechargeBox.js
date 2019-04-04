@@ -98,8 +98,12 @@ Component({
                         paySign,
                         success: res => {
                             console.log('支付成功', res)
-                            this.rechargeSuccess()
                             this.hideRechargeBox()
+                            // this.rechargeSuccess()
+                            // 新版本不做回调处理，直接跳转个人中心页面，故注释了上面的语句，使用了下面的语句
+                            wx.switchTab({
+                              url: '/pages/usercenter/usercenter'
+                            })
                         },
                         fail: res => {
                             console.log('支付失败', res)
@@ -129,17 +133,23 @@ Component({
             this.setData({
                 rechargeBox: false
             })
+            if (this.rechargeClose) {
+              this.rechargeClose()
+            }
         },
 
-        showRechargeBox: function(callback) { // 如果没有充值数据，则不弹出，并且尝试重新获取数据
+        showRechargeBox: function(options) { // 如果没有充值数据，则不弹出，并且尝试重新获取数据
 
             let { rechargeData: { rechargeList } } = this.data
             if (!rechargeList || (rechargeList && !rechargeList[0])) {
                 this.getRechargeData()
                 return false
             }
-            if (callback) { // 如果传入了callback
-                this.rechargeSuccess = callback
+            if (options && options.successCallback) { // 如果传入了callback
+              this.rechargeSuccess = options.successCallback
+            }
+            if (options && options.closeCallback) {
+              this.rechargeClose = options.closeCallback
             }
             this.setData({
                 rechargeBox: true
@@ -152,6 +162,10 @@ Component({
             if (currentPage && currentPage.refreshPage) { // refreshPage是在页面上的方法，刷新页面数据，如果页面上有该方法，则充值成功后调用该方法刷新数据
                 currentPage.refreshPage()
             }
+        },
+
+        rechargeClose: function () {
+          console.log('rechargeClose')
         }
     }
 })

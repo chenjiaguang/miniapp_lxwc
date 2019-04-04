@@ -23,7 +23,7 @@ page {
 
 .info-box {
     margin: 0;
-    padding-top: 50rpx;
+    /* padding-top: 70rpx; */
     background: #fff;
     border-radius: 8rpx;
     height: 100%;
@@ -64,6 +64,7 @@ page {
 .actual-text {
     font-size: 90rpx;
     line-height: 90rpx;
+    padding-right: 22rpx;
 }
 
 .discount-box {
@@ -71,8 +72,8 @@ page {
 }
 
 .discount-item {
-    height: 48rpx;
-    font-size: 28rpx;
+    height: 60rpx;
+    font-size: 30rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -18,15 +18,15 @@ page {
 .total, .ignore {
   display: flex;
   padding: 0 32rpx;
-  height: 94rpx;
+  height: 104rpx;
   justify-content: space-between;
   align-items: center;
 }
 
 .total-title, .ignore-title {
   flex: 1;
-  font-size: 30rpx;
-  line-height: 40rpx;
+  font-size: 32rpx;
+  line-height: 42rpx;
   color: #333;
   font-weight: bold;
 }
@@ -34,11 +34,12 @@ page {
 .total-input, .ignore-input {
   flex: 1;
   height: 100%;
-  font-size: 30rpx;
-  line-height: 94rpx;
+  font-size: 32rpx;
+  line-height: 104rpx;
   color: #333;
   padding: 0;
   text-align: right;
+  font-weight: bold;
 }
 
 /* 折扣部分 */

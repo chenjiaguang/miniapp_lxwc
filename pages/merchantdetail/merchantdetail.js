@@ -357,7 +357,7 @@ Page({
             success: res => {
                 if (res.confirm) {
                     console.log('用户点击确定')
-                    util.showRechargeModal(this.checkBalance)
+                    util.showRechargeModal({successCallback: this.checkBalance})
                 } else if (res.cancel) {
                     console.log('用户点击取消')
                 }

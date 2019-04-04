@@ -113,16 +113,23 @@ Page({
                 success: res => {
                     if (res.confirm) {
                         console.log('用户点击确定')
-                        util.showRechargeModal(this.checkBalance)
+                      util.showRechargeModal({ successCallback: this.checkBalance, closeCallback: this.backIndex})
                     } else if (res.cancel) {
                         console.log('用户点击取消')
-                        wx.redirectTo({
-                            url: '/pages/merchantdetail/merchantdetail?id=' + this.data.shopid
-                        })
+                        // wx.redirectTo({
+                        //   url: '/pages/merchantdetail/merchantdetail?id=' + this.data.shopid
+                        // })
+                      this.backIndex()
                     }
                 }
             })
         }
+    },
+
+    backIndex: function () {
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
     },
 
     getUserDiscountInfo: function(shopid) { // 获取用户支付相关的优惠信息
@@ -217,6 +224,22 @@ Page({
                 })
                 // this.goMerchant()
         })
+    },
+
+    checkBalance: function () {
+      util.request('/user/info').then(res => { // 获取用户数据
+        if (res && res.data && !res.msg) { // 获取数据成功
+          let { id, avatar, phone, name, gender, birthday, balance } = res.data
+          const app = getApp()
+          app.globalData.userInfo = Object.assign({}, app.globalData.userInfo, res.data)
+          this.setData({
+            balance,
+            phone
+          })
+        }
+      }).catch(err => {
+        console.log('获取数据失败', err)
+      })
     },
 
     calFullCutAct: function(total, ignore) { // 计算满减活动为止的应付金额
