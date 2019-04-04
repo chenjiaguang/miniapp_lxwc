@@ -97,11 +97,16 @@ Page({
     findMap: function(e) {
         console.log('click address', e);
         let location = this.data.location
+        if (!location) {
+          return false
+        }
         let { name, address } = e.currentTarget.dataset
             // wx.navigateTo({ url: '/pages/merchantmap/merchantmap?location=' + location });
         wx.openLocation({
-            latitude: wx.getStorageSync('userLat'), //纬度，范围为-90~90，负数表示南纬,
-            longitude: wx.getStorageSync('userLng'), //经度，范围为-180~180，负数表示西经,
+            // latitude: wx.getStorageSync('userLat'), //纬度，范围为-90~90，负数表示南纬,
+            // longitude: wx.getStorageSync('userLng'), //经度，范围为-180~180，负数表示西经,
+            latitude: Number(location.split(',')[0]), //纬度，范围为-90~90，负数表示南纬,
+            longitude: Number(location.split(',')[1]), //经度，范围为-180~180，负数表示西经,
             scale: 15, //缩放比例，范围5~18,
             name: name, //位置名,
             address: address, //地址的详细说明,

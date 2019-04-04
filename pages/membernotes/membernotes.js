@@ -18,7 +18,7 @@ Page({
             })
         } else {
             this.setData({
-                url: 'https://mini.lx.fantuan.cn/display/notice'
+              url: 'https://mini.admin.hnlelian.cn/display/notice'
             })
         }
     },
