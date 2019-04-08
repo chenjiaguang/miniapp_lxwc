@@ -175,9 +175,7 @@ Page({
     getVoucher: function(e) { // 领取满减优惠券
         const voucherId = e.currentTarget.dataset.voucher.id
         const status = e.currentTarget.dataset.voucher.status
-        console.log('status', status);
-        const { phone } = this.data
-        if (!phone || this.voucherGetting[voucherId.toString()] || status.toString() !== '1') { // 正在获取对应的优惠券时，中断当前操作，未领取状态才能再次领取
+        if (this.voucherGetting[voucherId.toString()] || status.toString() !== '1') { // 正在获取对应的优惠券时，中断当前操作，未领取状态才能再次领取
             return false
         }
         const goNext = () => {
@@ -261,8 +259,8 @@ Page({
     },
 
     goPay: function() {
-        let { merchantData, phone, balance } = this.data
-        if (!phone || !this.shopid) {
+        let { merchantData, balance } = this.data
+        if (!this.shopid) {
             return false
         }
         const goNext = () => {

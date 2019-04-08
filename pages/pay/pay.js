@@ -194,8 +194,12 @@ Page({
                         title: name
                     })
                 }
-                if (!phone || !balance) {
-                    this.goMerchant()
+                // 去掉对手机的认证（原会员）
+                // if (!phone || !balance) {
+                //     this.goMerchant()
+                // }
+                if (!balance) {
+                  this.goMerchant()
                 }
             } else {
                 this.goMerchant()
@@ -679,9 +683,10 @@ Page({
         if (paying || (actual && parseFloat(actual) < 0) || total == 0) { // 正在付款时中断
             return false
         }
-        if (!phone) { // 无手机号，不是会员
-            return false
-        }
+        // 去掉对手机的认证（原会员）
+        // if (!phone) { // 无手机号，不是会员
+        //     return false
+        // }
 
         let coupon_id = selectedVoucher ? selectedVoucher.id : ''
         let hongbao_id = selectedRedPacket ? selectedRedPacket.id : ''

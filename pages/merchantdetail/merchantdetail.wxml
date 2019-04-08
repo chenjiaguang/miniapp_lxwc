@@ -89,7 +89,7 @@
           <view class='voucher-text'>{{voucher.title}}</view>
           <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
             <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
-            <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
+            <!-- <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button> -->
           </view>
         </view>
       </view>
@@ -210,7 +210,7 @@
     <view class="pay-btn-content">
       <view class="pay-btn {{extraBottom ? 'adapt-iphone-bottom' : ''}}" catchtap="goPay">
         <text>优惠买单</text>
-        <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
+        <!-- <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button> -->
       </view>
       <iphone-bottom-adapter />
     </view>
