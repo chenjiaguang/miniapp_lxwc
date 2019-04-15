@@ -159,7 +159,7 @@ Page({
                     location: res.data.position
                 }
                 this.setData(_obj)
-                console.log('获取到的活动：', this.data.activitys);
+                console.log('获取到的活动：', _obj);
                 console.log(this.data.activitys.fanxian[0]);
                 console.log(voucher);
             }

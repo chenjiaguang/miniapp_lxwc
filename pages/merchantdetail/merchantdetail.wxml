@@ -53,7 +53,7 @@
     </view>
   </view>
   <!-- 商家优惠活动 -->
-  <view wx:if="{{activitys.platnew.length || activitys.shopnew.length || activitys.shopyouhui.length || activitys.voucher.length || activitys.fanquan.length || activitys.fanxian.length}}" class='merchant-activity'>
+  <view wx:if="{{activitys.platnew.length || activitys.shopnew.length || activitys.shopyouhui.length || activitys.voucher.length || activitys.fanquan.length || activitys.fanxian.length || activitys.shopzeng.length || activitys.zhekou.length}}" class='merchant-activity'>
     <view class='block-separator'></view>
     <view class='activity-header'>商家优惠</view>
     
