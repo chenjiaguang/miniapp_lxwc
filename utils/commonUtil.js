@@ -255,9 +255,10 @@ const updateUserInfo = () => {
 const checkLogin = (options) => {
     const timeStamp = Date.parse(new Date())
     const expiration = wx.getStorageSync('expiration') || 0
+    const nickname = wx.getStorageSync('nickname')
     const token = wx.getStorageSync('token')
     console.log(timeStamp, expiration)
-    if (token && timeStamp < expiration) {
+    if (token && nickname && timeStamp < expiration) {
         return true
     } else {
         // const promotionJson = wx.getStorageSync('promotion')
@@ -266,7 +267,7 @@ const checkLogin = (options) => {
         //   wx.setStorageSync('promotion', promotionJson)
         // }
     }
-    if (storageUtil.getStorage('token')) {
+    if (storageUtil.getStorage('token') && nickname) {
         return true
     }
     const pages = getCurrentPages()

@@ -544,6 +544,18 @@ Page({
             total,
             ignore,
         } = this.data
+        if (this.data.balance && this.isNumber(this.data.balance) && value && this.isNumber(value) && (parseFloat(value) - this.data.balance > 0)) { // 输入的值大于余额
+            console.log('输入的值大于余额', value)
+            wx.showToast({
+              title: '余额不足，消费金额不能大于余额，请重新输入！',
+              icon: 'none'
+            })
+            this.setData({
+              total: this.data.total
+            })
+            return false
+        }
+
         if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0)))) {
             ignore = ''
         }
