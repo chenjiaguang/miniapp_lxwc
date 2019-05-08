@@ -690,7 +690,8 @@ Page({
             selectedVoucher,
             selectedRedPacket,
             paying,
-            phone
+            phone,
+            name
         } = this.data
         if (paying || (actual && parseFloat(actual) < 0) || total == 0) { // 正在付款时中断
             return false
@@ -700,22 +701,36 @@ Page({
         //     return false
         // }
 
-        let coupon_id = selectedVoucher ? selectedVoucher.id : ''
-        let hongbao_id = selectedRedPacket ? selectedRedPacket.id : ''
-        let rData = {
-            formid: e.detail.formId,
-            shopid,
-            total_amount: total ? parseFloat(total) : 0,
-            exclude_amount: ignore ? parseFloat(ignore) : 0,
-            actual_amount: actual ? parseFloat(actual) : 0,
-            coupon_id,
-            hongbao_id
-        }
-        console.log(rData);
-        this.setData({
-            paying: true
-        }, () => {
-            this.payRequest(rData)
+        wx.showModal({
+          title: '支付确认',
+          content: '确定向“' + name + '”支付' + actual + '元吗?',
+          confirmText: '支付',
+          confirmColor: '#108EE9',
+          success: res => {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              let coupon_id = selectedVoucher ? selectedVoucher.id : ''
+              let hongbao_id = selectedRedPacket ? selectedRedPacket.id : ''
+              let rData = {
+                formid: e.detail.formId,
+                shopid,
+                total_amount: total ? parseFloat(total) : 0,
+                exclude_amount: ignore ? parseFloat(ignore) : 0,
+                actual_amount: actual ? parseFloat(actual) : 0,
+                coupon_id,
+                hongbao_id
+              }
+              console.log(rData);
+              this.setData({
+                paying: true
+              }, () => {
+                this.payRequest(rData)
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              return false
+            }
+          }
         })
     },
     showRechargeDialog: function() {

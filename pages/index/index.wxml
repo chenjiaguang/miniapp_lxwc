@@ -9,8 +9,8 @@
     </view>
     <view class='message-box' catchtap="goMessageList">
       <image class='message-icon' src="/assets/images/message_icon2.png" mode="aspectFit"></image>
-      <view wx:if="{{unread}}" class='message-count'>
-        <text class='message-text'>{{unread > 99 ? '99+' : unread}}</text>
+      <view wx:if="{{$state.messageUnread}}" class='message-count'>
+        <text class='message-text'>{{$state.messageUnread > 99 ? '99+' : $state.messageUnread}}</text>
       </view>
     </view> 
   </view>

@@ -2,6 +2,14 @@
 const config = require('/configs/index.js')
 import util from '/utils/util.js'
 import expand from '/utils/expand.js'
+import Store from 'wxministore'
+let store = new Store({
+  state: {
+    msg: '这是一个全局状态',
+    messageUnread: 55,
+    openPart: true
+  }
+})
 App({
   onLaunch: function (options) {
     this.globalData.launchOptions = options
@@ -28,6 +36,7 @@ App({
       this.globalData.extraBottom = true
     }
   },
+  store: store,
   config: null,
   globalData: {
     balance: 0,

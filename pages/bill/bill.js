@@ -7,6 +7,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        headerHeight: 0,
+        winHeight: 0,
+        tabWrapperHeight: 0,
         currentTab: 0, // 默认tab索引
         header: [{
                 type: '0',
@@ -71,6 +74,12 @@ Page({
     onLoad: function(options) {
         const { currentTab } = this.data
         this.fetchBills(0, currentTab)
+        const systemInfo = wx.getSystemInfoSync()
+        const headerHeight = parseInt((systemInfo.windowWidth / 750) * 90)
+        const winHeight = systemInfo.windowHeight
+        const tabWrapperHeight = winHeight - headerHeight
+      this.setData({ headerHeight: headerHeight + 'px', winHeight: winHeight + 'px', tabWrapperHeight: tabWrapperHeight + 'px'})
+        // console.log('onReady', headerHeight, winHeight, tabWrapperHeight)
     },
     enterOrderDetail(e) {
         let bill = e.currentTarget.dataset.bill || ''
@@ -84,7 +93,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function() {
-
+      
     },
 
     /**

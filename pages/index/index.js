@@ -4,6 +4,8 @@ var QQMapWX = require('../../assets/js/qqmap-wx-jssdk.js')
 var qqmapsdk;
 
 Page({
+  userStore: true,
+  useProp: 'messageUnread',
   data: {
     locationGetting: false,
     location: {
@@ -12,7 +14,6 @@ Page({
       lat: null
     },
     searchFixed: false,
-    unread: 0,
     activityLoaded: false,
     activityFetching: false,
     activityCurrent: 0,
@@ -44,6 +45,7 @@ Page({
   },
 
   onLoad: function (options) {
+    this.getMessageUnread()
     qqmapsdk = new QQMapWX({
       key: 'RCRBZ-JYTKW-WJCR2-OUUHF-RSZ5V-RKF76', // 必填
       // sig: 'YdSj1eVkpOsyHuQbB9YkPLUgw8kzK7Dh'
@@ -97,10 +99,22 @@ Page({
     }
   },
   //获取用户未读消息
-  getUnread: function(){
-    const unread = wx.getStorageSync('unread')
-    this.setData({
-      unread
+  getMessageUnread: function(){
+    setTimeout(() => { // 模仿获取消息数
+      const app = getApp()
+      app.store.setState({
+        messageUnread: 88
+      })
+      setTimeout(() => {
+        this.clearMessageUnread()
+      }, 5000)
+    }, 2000)
+  },
+
+  clearMessageUnread: function () {
+    const app = getApp()
+    app.store.setState({
+      messageUnread: 0
     })
   },
 
